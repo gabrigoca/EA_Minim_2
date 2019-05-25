@@ -1,0 +1,89 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title style="font-weight: bold">
+      Station Information
+    </ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="home"></ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div class="limiter">
+    <div class="container-login100">
+      <div class="wrap-login100 p-l-20 p-r-20 p-t-20 p-b-20">
+        <br>
+        <!--Tittle-->
+        <ion-title *ngIf="Station" class="login100-form-title">Nombre de la estacion: {{Station.name}}</ion-title>
+        <br>
+        <!--Si hi han bicis, mostrem els titols de les columnes-->
+        <ion-list-header *ngIf="Station.bikes">
+          <ion-label class="list_titles" style="padding-left: 15px">Bike</ion-label>
+          <ion-label class="list_titles">Kms</ion-label>
+          <ion-label class="list_titles">Description</ion-label>
+          <ion-label></ion-label>
+        </ion-list-header>
+
+        <ion-label *ngIf="Station.bikes==null" class="list_titles">No hay bicis en esta estacion</ion-label>
+
+        <ion-list *ngIf="Station.bikes" id="menu">
+          <ion-item  class="list_items" *ngFor="let bike of bikes">
+
+            <ion-label style="word-spacing: normal">{{bike.name}}</ion-label>
+            <ion-label>{{bike.distance}}</ion-label>
+            <ion-label style="word-spacing: normal">{{bike.description}} </ion-label>
+
+            <ion-button type="button" color="danger" (click)="botoLlista(bike._id)">
+              <ion-icon slot="icon-only" name="trash"></ion-icon>
+            </ion-button>
+
+          </ion-item>
+        </ion-list>
+        <!--Lista bicis sin asignar-->
+        <ion-title *ngIf="Station" class="login100-form-title">Bicis sin asignar:</ion-title>
+
+        <ion-list-header *ngIf="llistaUnBikes">
+          <ion-label class="list_titles" style="padding-left: 15px">Bike</ion-label>
+          <ion-label class="list_titles">Kms</ion-label>
+          <ion-label class="list_titles">Description</ion-label>
+          <ion-label></ion-label>
+        </ion-list-header>
+
+        <ion-list *ngIf="llistaUnBikes" id="menu">
+          <ion-item  class="list_items" *ngFor="let element of llistaUnBikes">
+
+            <ion-label style="word-spacing: normal">{{element.name}}</ion-label>
+            <ion-label>{{element.distance}}</ion-label>
+            <ion-label style="word-spacing: normal">{{element.description}}</ion-label>
+
+            <ion-button type="button" (click)="botoLlistaUnBikes(element._id)">
+              <ion-icon slot="icon-only" name="add"></ion-icon>
+            </ion-button>
+
+          </ion-item>
+        </ion-list>
+
+      </div>
+    </div>
+
+
+
+
+    <!--===============================================================================================-->
+    <script src="vendor/jquery/jquery-3.2.1.min.js"></script>
+    <!--===============================================================================================-->
+    <script src="vendor/animsition/js/animsition.min.js"></script>
+    <!--===============================================================================================-->
+    <script src="vendor/bootstrap/js/popper.js"></script>
+    <script src="vendor/bootstrap/js/bootstrap.min.js"></script>
+    <!--===============================================================================================-->
+    <script src="vendor/select2/select2.min.js"></script>
+    <!--===============================================================================================-->
+    <script src="vendor/daterangepicker/moment.min.js"></script>
+    <script src="vendor/daterangepicker/daterangepicker.js"></script>
+    <!--===============================================================================================-->
+    <script src="vendor/countdowntime/countdowntime.js"></script>
+    <!--===============================================================================================-->
+  </div>
+</ion-content>

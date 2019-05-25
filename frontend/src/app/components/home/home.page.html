@@ -1,0 +1,63 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title style="padding-left: 30px; font-weight: bold">
+      List of stations
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div class="limiter">
+    <div class="container-login100">
+      <div class="wrap-login100 p-l-20 p-r-20 p-t-20 p-b-20">
+        <br>
+        <span class="login100-form-title">List of Stations</span>
+        <br>
+
+        <ion-list-header *ngIf="llista">
+          <ion-label class="list_titles" style="padding-left: 15px">Station</ion-label>
+          <ion-label class="list_titles">State</ion-label>
+          <ion-label class="list_titles">Description</ion-label>
+          <ion-label></ion-label>
+        </ion-list-header>
+
+        <ion-list *ngIf="llista" id="menu">
+          <!--Per cada estació de la llista fem:-->
+          <ion-item  class="list_items" *ngFor="let element of llista">
+
+            <ion-label style="word-spacing: normal">{{element.name}}</ion-label>
+            <ion-label style="font-weight: bold; color: green" *ngIf="element.state==true">Available</ion-label>
+            <ion-label style="font-weight: bold; color: red" *ngIf="element.state==false">NA</ion-label>
+            <ion-label style="word-spacing: normal">{{element.description}}</ion-label>
+
+            <ion-button *ngIf="llista"  type="button" (click)="botoLlista(element._id)" color="primary">
+              <ion-icon slot="icon-only" name="information-circle"></ion-icon>
+            </ion-button>
+
+          </ion-item>
+
+        </ion-list>
+
+      </div>
+    </div>
+
+
+
+
+    <!--===============================================================================================-->
+    <script src="vendor/jquery/jquery-3.2.1.min.js"></script>
+    <!--===============================================================================================-->
+    <script src="vendor/animsition/js/animsition.min.js"></script>
+    <!--===============================================================================================-->
+    <script src="vendor/bootstrap/js/popper.js"></script>
+    <script src="vendor/bootstrap/js/bootstrap.min.js"></script>
+    <!--===============================================================================================-->
+    <script src="vendor/select2/select2.min.js"></script>
+    <!--===============================================================================================-->
+    <script src="vendor/daterangepicker/moment.min.js"></script>
+    <script src="vendor/daterangepicker/daterangepicker.js"></script>
+    <!--===============================================================================================-->
+    <script src="vendor/countdowntime/countdowntime.js"></script>
+    <!--===============================================================================================-->
+  </div>
+</ion-content>
