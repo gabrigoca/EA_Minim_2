@@ -15,7 +15,7 @@
       <div class="wrap-login100 p-l-20 p-r-20 p-t-20 p-b-20">
         <br>
         <!--Tittle-->
-        <ion-title *ngIf="Station" class="login100-form-title">Nombre de la estacion: {{Station.name}}</ion-title>
+        <ion-title *ngIf="Station" class="login100-form-title">{{Station.name}}: Current bikes</ion-title>
         <br>
         <!--Si hi han bicis, mostrem els titols de les columnes-->
         <ion-list-header *ngIf="Station.bikes">
@@ -41,7 +41,7 @@
           </ion-item>
         </ion-list>
         <!--Lista bicis sin asignar-->
-        <ion-title *ngIf="Station" class="login100-form-title">Bicis sin asignar:</ion-title>
+        <ion-title *ngIf="Station" class="login100-form-title">Unassigned bikes:</ion-title>
 
         <ion-list-header *ngIf="llistaUnBikes">
           <ion-label class="list_titles" style="padding-left: 15px">Bike</ion-label>
