@@ -18,16 +18,17 @@
         <ion-title *ngIf="Station" class="login100-form-title">{{Station.name}}: Current bikes</ion-title>
         <br>
         <!--Si hi han bicis, mostrem els titols de les columnes-->
-        <ion-list-header *ngIf="Station.bikes">
+        <ion-list-header *ngIf="Station.bikes&&Station.bikes.length!=0">
           <ion-label class="list_titles" style="padding-left: 15px">Bike</ion-label>
           <ion-label class="list_titles">Kms</ion-label>
           <ion-label class="list_titles">Description</ion-label>
           <ion-label></ion-label>
         </ion-list-header>
+        <!--Si no hi han bicis, mostrem un missatge-->
+        <ion-label *ngIf="Station.bikes==null||Station.bikes.length==0" class="list_titles">There are no bikes in this station</ion-label>
 
-        <ion-label *ngIf="Station.bikes==null" class="list_titles">No hay bicis en esta estacion</ion-label>
-
-        <ion-list *ngIf="Station.bikes" id="menu">
+        <!--Si hi han bicis, mostrem la llista-->
+        <ion-list *ngIf="Station.bikes&&Station.bikes.length!=0" id="menu">
           <ion-item  class="list_items" *ngFor="let bike of bikes">
 
             <ion-label style="word-spacing: normal">{{bike.name}}</ion-label>

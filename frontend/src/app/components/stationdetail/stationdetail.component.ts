@@ -3,6 +3,7 @@ import {BikeServices} from "../../services/bike.services";
 import {StationServices} from "../../services/station.services";
 import {DataService} from "../../services/data.services";
 import {Router} from "@angular/router";
+import {ToastController} from "@ionic/angular";
 
 @Component({
   selector: 'app-stationdetail',
@@ -20,6 +21,7 @@ export class StationdetailComponent implements OnInit {
   constructor(private StationService: StationServices,private bikeService: BikeServices, private dataService:DataService, private router: Router) { }
 
   ngOnInit() {
+
     this.dataService.clickedStationId.subscribe(StationId => this.StationId = StationId)
     console.log("Id del element clickat: "+this.StationId)
     if(this.StationId=="0")
@@ -37,6 +39,7 @@ export class StationdetailComponent implements OnInit {
     this.obtainBikes()
   }
 
+  //obtindre la informacio d'una estacio
   obtainStation() {
     console.log("Operació de demanar informació sobre una asignatura");
     if(this.StationId!="0") {
@@ -58,6 +61,7 @@ export class StationdetailComponent implements OnInit {
     }
   }
 
+  //obtindre les bicis que hi han a l'estació
   obtainBikes(){
     if(this.StationId!="0") {
       this.StationService.obtainStationBikes(this.StationId)
@@ -66,6 +70,7 @@ export class StationdetailComponent implements OnInit {
                 //Podem filtrar per tots els codis 2XX
                 if (response.status == 200) {
                   this.bikes = response.body;
+
                 } else {
                   //Error desconegut
                   console.log("Error");
@@ -79,6 +84,7 @@ export class StationdetailComponent implements OnInit {
 
   }
 
+  //funcio per treure una bici de l'estació
   botoLlista(idBike) {
     //this.dataService.changeBikeId(idBike)
     console.log(idBike+" , "+this.StationId)
@@ -97,6 +103,7 @@ export class StationdetailComponent implements OnInit {
 
   }
 
+    //funcio per afegir una bici de l'estació
   botoLlistaUnBikes(idBike) {
     this.dataService.changeBikeId(idBike)
     console.log(idBike+" , "+this.StationId)
@@ -115,6 +122,7 @@ export class StationdetailComponent implements OnInit {
         });
   }
 
+  //obtindre les bicis sense assignar
   llistaBikes() {
     console.log("Operació de demanar bicicletes realitzada al BackEnd:");
     this.bikeService.obtainUnassinedBikes()
